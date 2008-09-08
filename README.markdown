@@ -26,7 +26,15 @@ The block is just pure Ruby, so you could put any additional ||, &&, !, etc.  It
 for this controller if the current day of the month is between 7 and 13...
 
     padlock { (7..13).include? Time.now.day }
-
+    
+Here are a few more examples:
+    
+    # for all actions other than :index, only allow users with an admin or manager role
+    on the specific Room object
+    padlock(:on_all_except => :index) { has_role? [:admin, :manager], Room.find(params[:id])}
+    
+    # only admins of the specified project or editors/owners of the current Team can access the destroy method
+    padlock(:on => :destroy) { has_role?(:admin, Project.find(params[:id]) || has_role?([:editor, :owner], Team.find(@current_team))}
 
 Padlock also adds numerous methods to both the User and authorizable models to manage roles.  Here
 are just a few examples:
