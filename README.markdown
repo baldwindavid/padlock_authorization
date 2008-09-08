@@ -5,6 +5,8 @@
 Padlock Authorization Plugin
 ============================
 
+###*Simple object-based role authorization*
+
 Padlock allows easy object-based (rather than just global) role authorization.
 It adds a "padlock" method to the controller that "locks" specified actions and gets
 "unlocked" only if passed a block that resolves to "true".
