@@ -34,18 +34,24 @@ are just a few examples:
 #### User
 
     @user.has_role? [:manager, :editor, :admin], @project
+    @user.has_role :admin, @project 
+    @user.has_no_role :admin, @project
+    @user.has_no_roles_on @project
+    @user.has_no_roles
     @user.has_what_with_role :owner, Project
     @user.has_what_roles_on @project 
     
 #### Objects
 
     @project.accepts_role? :admin, @user
+    @project.accepts_role :admin, @user
+    @project.accepts_no_role :admin, @user
     @project.accepts_who_with_role [:editor, :manager, :delegate]
     @project.accepts_what_roles_by @user
 
 The User gets these "has" methods by adding `acts_as_authorized_user` to the User model.  Authorizable
 objects (including Users) can get the "accepts" methods by adding `acts_as_authorizable` to the model.
-Detailed examples for each available method are discussed in detail below. 
+Detailed examples for each available method are discussed below under "Available Methods". 
 
 
 
