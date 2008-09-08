@@ -31,7 +31,7 @@ for this controller if the current day of the month is between 7 and 13...
 Padlock also adds numerous methods to both the User and authorizable models to manage roles.  Here
 are just a few examples:
 
-#### User
+#### User (add "acts\_as\_authorized\_user" to the User model)
 
     @user.has_role? [:manager, :editor, :admin], @project
     @user.has_role :admin, @project 
@@ -41,7 +41,7 @@ are just a few examples:
     @user.has_what_with_role :owner, Project
     @user.has_what_roles_on @project 
     
-#### Objects
+#### Authorizable Objects (add "acts\_as\_authorizable" to the authorizable model)
 
     @project.accepts_role? :admin, @user
     @project.accepts_role :admin, @user
