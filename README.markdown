@@ -169,7 +169,7 @@ This will scope the roles down to those owned by the User.
 **Note:** The methods below already handle these examples, so you may never actually
 need to use @user.roles. 
 
----    
+---
 
 ### Instance Methods
 
