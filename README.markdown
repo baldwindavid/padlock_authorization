@@ -78,8 +78,8 @@ As far as the authorization routines are concerned, there is no such thing as a
 ### This sucks!  All I want is global roles!
 
 This is probably overkill for apps that only need global roles.  I would recommend Tim Harper's 
-role_requirement plugin for global roles (in fact, the controller portion of this plugin is
-mostly just a twist on the code from that plugin).
+[role_requirement](http://github.com/timcharper/role_requirement/) plugin for global roles 
+(in fact, the controller portion of this plugin is mostly just a twist on the code from that plugin).
 
 That being said, there is nothing stopping you from easily mimicking global roles in your
 application.  For instance, if you wanted to create a few "global" roles, just create an 
@@ -106,9 +106,10 @@ You could do the same thing to mimick Class or Controller roles.  Just wrap the 
 and you're good to go.
 
 There are also already plugins that do object-based authorization.  Many of the thoughts and
-code for the User and Model methods are actually derived from Bill Katz's impressive Authorization
-plugin.  That plugin actually introduces a parser that will authorize in the controller with
-statements like "'inner circle' of :founder" or "attendees of :meeting or swedish\_mensa\_supermodels".
+code for the User and Model methods are actually derived from Bill Katz's impressive [Authorization
+plugin](http://github.com/DocSavage/rails-authorization-plugin/).  That plugin actually introduces
+a parser that will authorize in the controller with statements like "'inner circle' of :founder" or 
+"attendees of :meeting or swedish\_mensa\_supermodels".
 Very cool, but it seemed like I was spending more time getting the wording right than anything.  For
 that reason, I just wanted pure Ruby.  The authorization plugin also has a ton of other stuff and
 you can actually remove the parser stuff if you want.  Even so, I wanted a few different methods, as
@@ -148,7 +149,18 @@ User Extensions
 -----------------------------------
 
 ### Associations
+
     roles
+
+This will scope the roles down to those owned by the User.
+
+    Examples:
+    @user.roles
+    @user.roles.find_all_by_authorizable_type('Project')
+    
+**Note:** The methods below already handle these examples, so you may never actually
+need use @user.roles. 
+    
 
 ### Instance Methods
 
@@ -241,8 +253,30 @@ Model Extensions
   
 
 ### Associations
+
     accepted_roles
+
+This will scope all accepted roles down to those on this object.
+
+    Examples:
+    @project.accepted_roles
+    @project.accepted_roles.find_all_by_authorizable_type('Project')
+
+**Note:** The methods below already handle these examples, so you may never actually
+need use @project.accepted_roles.
+
+---
+
     users
+
+This will scope all of accepted roles down to those on this object.
+
+    Examples:
+    @project.users
+    @project.users.find_by_email('john@doe.com')
+
+**Note:** The methods below already handle these examples, so you may never actually
+need use @project.users.
 
 ### Instance Methods
 
