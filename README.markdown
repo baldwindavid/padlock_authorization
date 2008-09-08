@@ -159,8 +159,9 @@ This will scope the roles down to those owned by the User.
     @user.roles.find_all_by_authorizable_type('Project')
     
 **Note:** The methods below already handle these examples, so you may never actually
-need use @user.roles. 
-    
+need to use @user.roles. 
+
+---    
 
 ### Instance Methods
 
@@ -263,7 +264,7 @@ This will scope all accepted roles down to those on this object.
     @project.accepted_roles.find_all_by_authorizable_type('Project')
 
 **Note:** The methods below already handle these examples, so you may never actually
-need use @project.accepted_roles.
+need to use @project.accepted_roles.
 
 ---
 
@@ -276,7 +277,9 @@ This will scope all of accepted roles down to those on this object.
     @project.users.find_by_email('john@doe.com')
 
 **Note:** The methods below already handle these examples, so you may never actually
-need use @project.users.
+need to use @project.users.
+
+---
 
 ### Instance Methods
 
