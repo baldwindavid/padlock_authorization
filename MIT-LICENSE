@@ -1,5 +1,13 @@
 Copyright (c) 2008 David Baldwin
 
+Important Note:  A substantial portion of this code is derived two plugins:
+
+  Authorization plugin - http://github.com/DocSavage/rails-authorization-plugin/
+  Copyright (c) 2006 William T Katz
+
+  Role Requirement plugin - http://github.com/timcharper/role_requirement/
+  Copyright (c) 2008 Timothy Curtis Harper and Jonathan Barket
+
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
