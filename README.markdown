@@ -156,6 +156,8 @@ Available Methods
 User Extensions
 -----------------------------------
 
+#### These methods become available when `acts_as_authorized_user` is added to the User model.
+
 ### Associations
 
     roles
@@ -259,7 +261,8 @@ need to use @user.roles.
 
 Model Extensions
 ---------------------------------------
-  
+
+#### These methods become available to models with `acts_as_authorizable` (including User model)
 
 ### Associations
 
