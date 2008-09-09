@@ -16,7 +16,7 @@ module PadlockAuthorization
     klass.send :class_inheritable_array, :role_requirements
     klass.send :include, RoleSecurityInstanceMethods
     klass.send :extend, RoleSecurityClassMethods
-  
+    klass.send :helper_method, :has_role? 
     klass.send :role_requirements=, []
   end
 

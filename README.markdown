@@ -99,13 +99,21 @@ Then in "application.rb" insert a method like the following:
       has_role? role_names, App.first
     end
     
-This wraps the "has_role?" method and will allow this sort of language in your controller:
+    helper_method :has_global_role?
+    
+This wraps the `has_role?` method and will allow this sort of language in your controller:
 
     # prevent all actions in this controller unless the current_user has a global role of :admin 
     padlock { has_global_role? :admin }
     
     # prevent the :destroy action unless global role of :admin, :manager, or :editor
     padlock( :on => :destroy ) { has_global_role? [:admin, :manager, :editor] }
+
+Note that in the above I also made this a helper method for usage in the view.  It should also be noted
+that the `has_role?` method is actually a wrapper of `current_user.has_role?`.  Thus, you could 
+use either `has_role?` or `current_user.has_role?` in the view to query the current_user's roles.
+Any other "has" or "accepts" methods can be used in the view, but will need to be sent to
+the User or authorizable object, rather than as bareword methods.
     
 A nice side effect of this is that it sets you up nicely in the event that you have multiple
 contexts, sites, subdomains using this application.
