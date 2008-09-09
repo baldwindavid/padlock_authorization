@@ -117,7 +117,7 @@ module PadlockAuthorization
   
     def access_denied
       if logged_in?
-        render :nothing => true, :status => 401
+        render_optional_error_file(401)
         return false
       else
         super
