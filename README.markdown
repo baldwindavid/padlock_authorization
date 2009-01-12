@@ -7,7 +7,7 @@ Padlock Authorization Plugin
 
 ###*Simple object-based role authorization*
 
-Padlock allows easy object-based (rather than just global) role authorization.
+Padlock allows easy object-based (rather than just global) role authorization functionality to ActiveRecord.
 It adds a "padlock" method to the controller that "locks" specified actions and gets
 "unlocked" only if passed a block that resolves to "true".
 
@@ -141,9 +141,6 @@ And there you have it.
 Installation
 ==========================
 
-### Dependencies
-This plugin requires usage of Rick Olson's "restful-authentication" plugin
-
 Installation of this plugin takes about 2 minutes.
 
     1. Install the plugin into vendor/plugins
@@ -155,7 +152,28 @@ Installation of this plugin takes about 2 minutes.
     
 You're all set!
 
+### Dependencies
 
+Padlock adds functionality to ActiveRecord, so that is a necessity.  Beyond that, it needs a `current_user` method that holds a user object.  It also needs an `access_denied` method, so that it knows where to send a user should they be denied access to a page.
+
+Both the `current_user` and `access_denied` methods are provided by default in restful-authentication.
+
+If you like Authlogic for authentication (I do), you will probably already have a `current_user` method if you got it working.  The necessary `access_denied` method can be added directly to your Application controller.  This is the method pulled from restful-authentication and should work just fine for Authlogic...
+
+    def access_denied
+      respond_to do |format|
+        format.html do
+          store_location
+          redirect_to new_user_session_path
+        end
+        # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
+        # Add any other API formats here.  Some browsers send Accept: */* and 
+        # trigger the 'format.any' block incorrectly.
+        format.any(:json, :xml) do
+          request_http_basic_authentication 'Web Password'
+        end
+      end
+    end
 
 
 Available Methods

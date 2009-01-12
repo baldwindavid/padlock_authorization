@@ -109,14 +109,9 @@ module PadlockAuthorization
         false
       end
     end
-    
-    
-    def self.included(klass)
-      raise "Because PadlockAuthorization extends acts_as_authenticated, You must include AuthenticatedSystem first before including PadlockAuthorization!" unless klass.included_modules.include?(AuthenticatedSystem)
-    end
   
     def access_denied
-      if logged_in?
+      if current_user
         render_optional_error_file(401)
         return false
       else
@@ -126,7 +121,6 @@ module PadlockAuthorization
   
     def check_roles       
       return access_denied unless self.class.user_authorized_for?(current_user, params, self)
-    
       true
     end
   
