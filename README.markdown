@@ -46,7 +46,7 @@ are just a few examples:
     @user.has_no_role :admin, @project
     @user.has_no_roles_on @project
     @user.has_no_roles
-    @user.has_what_with_role :owner, Project
+    @user.has_what_with_role :owner, "Project"
     @user.has_what_roles_on @project 
     
 #### Authorizable Objects (add "acts\_as\_authorizable" to the authorizable model)
@@ -277,10 +277,10 @@ need to use @user.roles.
 > **In other words:**  *This (user) has what objects with this (role) for this (Class name)* 
 
     Examples:
-    @user.has_what_with_role :owner, Project
+    @user.has_what_with_role :owner, "Project"
           # => [#<Project1>, #<Project2>, etc...]
                       
-    @user.has_what_with_role [:owner, :admin, :editor], Project
+    @user.has_what_with_role [:owner, :admin, :editor], "Project"
           # => [#<Project1>, #<Project2>, etc...]
 
     

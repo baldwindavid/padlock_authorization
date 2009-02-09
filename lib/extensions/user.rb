@@ -87,11 +87,12 @@ module PadlockAuthorization
         # This (user) has what objects with these (roles) for this (Class name)              
           # @user.has_what_with_role [:owner, :admin, :editor], Project
                     # => [#<Project1>, #<Project2>, etc...]
-        def has_what_with_role( role_name, authorizable_class )
-          authorizable_class.find(
-            self.roles.find(:all, :conditions => ['authorizable_type = ? AND name IN (?)']).collect(&:authorizable_id).uniq
+        def has_what_with_role( role_names, authorizable_class )
+          role_names = prepare_role_names(role_names)
+          authorizable_class.constantize.find(
+            self.roles.find(:all, :conditions => ['authorizable_type = ? AND name IN (?)', authorizable_class, role_names]).collect(&:authorizable_id).uniq
           )
-        end      
+        end
            
         
         
