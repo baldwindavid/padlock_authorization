@@ -118,7 +118,7 @@ the User or authorizable object, rather than as bareword methods.
 A nice side effect of this is that it sets you up nicely in the event that you have multiple
 contexts, sites, subdomains using this application.
 
-You could do the same thing to mimick Class or Controller roles.  Just wrap the has_role? method
+You could do the same thing to mimic Class or Controller roles.  Just wrap the has_role? method
 and you're good to go.
 
 There are also already plugins that do object-based authorization.  Many of the thoughts and
