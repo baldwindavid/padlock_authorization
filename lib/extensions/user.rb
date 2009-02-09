@@ -61,7 +61,7 @@ module PadlockAuthorization
         # remove all user's roles on a specific object
           # @user.has_no_roles_on @project
         def has_no_roles_on(authorizable_obj)
-          has_what_roles_on(authorizable_obj).each { |role| delete_role( role ) }
+          self.find_all_by_authorizable(authorizable_obj).each { |role| delete_role( role ) }
         end
         
         # This (user) has no roles on any object.
