@@ -1,4 +1,5 @@
 - Introduction
+- Helpful Links
 - Installation
 - Available Methods
 
@@ -137,6 +138,14 @@ to only allow object roles.
 
 And there you have it.
 
+
+Helpful Links
+=============
+
+- Google group: <http://groups.google.com/group/padlock_authorization>
+- Bugs: <http://github.com/baldwindavid/padlock_authorization/issues>
+
+If you find a bug or a problem please post it on the github repo issue tracker. If you need help with something, please use google groups. I check both regularly and get emails when anything happens, so that is the best place to get help. This also benefits other people in the future with the same questions / problems. Thank you. 
 
 Installation
 ==========================
