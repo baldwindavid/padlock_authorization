@@ -90,7 +90,7 @@ module PadlockAuthorization
         def has_what_with_role( role_names, authorizable_class )
           role_names = prepare_role_names(role_names)
           authorizable_class.constantize.find(
-            self.roles.find(:all, :conditions => ['authorizable_type = ? AND name IN (?)', authorizable_class, role_names]).collect(&:authorizable_id).uniq
+            self.roles.find(:all, :conditions => ['authorizable_type = ? AND name IN (?)', authorizable_class.constantize.base_class.to_s, role_names]).collect(&:authorizable_id).uniq
           )
         end
            
@@ -99,7 +99,7 @@ module PadlockAuthorization
         
         
 
-        def find_all_by_authorizable(authorizable_obj)          self.roles.find_all_by_authorizable_type_and_authorizable_id(authorizable_obj.class.to_s, authorizable_obj.id )
+        def find_all_by_authorizable(authorizable_obj)          self.roles.find_all_by_authorizable_type_and_authorizable_id(authorizable_obj.class.base_class.to_s, authorizable_obj.id )
         end
         
 
@@ -108,7 +108,7 @@ module PadlockAuthorization
         def get_role( role_name, authorizable_obj )
             Role.find( :first,
                        :conditions => [ 'name = ? AND authorizable_type = ? AND authorizable_id = ?',
-                                        role_name, authorizable_obj.class.to_s, authorizable_obj.id ] )
+                                        role_name, authorizable_obj.class.base_class.to_s, authorizable_obj.id ] )
         end
         
         # convert role names to array and names within to strings if not already
